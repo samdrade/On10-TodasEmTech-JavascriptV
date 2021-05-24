@@ -1,7 +1,7 @@
 fetchTypes()
 loadComboBoxTypes(pokemonTypes)
 
-fetchPokemonsAsync()
+fetchPokemons()
 loadPokemonList(pokemonList)
 
 function loadComboBoxTypes(types) {
@@ -36,7 +36,7 @@ function createPokemonCard(pokemon) {
     <figure class="pokemon-figure">
         <img src="img/${img.toLowerCase()}.png" alt="${pokemon.name}">
       </figure>
-      <section class="pokemon-description">
+      <section class="pokemon-deion">
         <span class="pokemon-id">#${Number(pokemon.id).toString().padStart(3, '0')}</span>
         <h1 class="pokemon-name">${pokemon.name}</h1>
         <div class="pokemon-types">${types}</div>
@@ -92,10 +92,10 @@ function filter() {
   return filteredList;
 }
 
-async function viewPokemon(e) {
+function viewPokemon(e) {
   e.preventDefault();
 
-  const pokemon = await getPokemonAsync($(this).data("id"))
+  const pokemon = getPokemon($(this).data("id"))
 
   $("#id").val(pokemon.id)
   $(".pokemon-sprite-m").attr('src', pokemon.sprites.other["official-artwork"].front_default)

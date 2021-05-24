@@ -1,12 +1,13 @@
+//-------------------------------------------------------------------------------------------------------------------------- Código da app.js ----------------------------------------------------------------
+
 let pokemonList = [];
-let pokemonTypes = []
+let pokemonTypes = [];
 
 function fetchTypes() {
     const request = new XMLHttpRequest()
     request.open("GET", "https://pokeapi.co/api/v2/type", false)
 
     request.onload = function () {
-        console.log('1. Executei a requisição')
 
         const data = JSON.parse(request.response)
 
@@ -18,13 +19,32 @@ function fetchTypes() {
     request.send()
 }
 
-async function fetchPokemonsAsync() {
+function fetchPokemons() {
     // https://borgesdn.github.io/pokedex-source/pokedex.json
+    const request = new XMLHttpRequest()
+
+    request.open("GET", "https://borgesdn.github.io/pokedex-source/pokedex.json", false)
+
+    request.onload = function () {
+        pokemonList = JSON.parse(request.response) 
+    };
+
+    request.send()
 }
 
-async function getPokemonAsync(id) {
+function getPokemon(id) {
     // https://pokeapi.co/api/v2/pokemon/{id}
-}
+    const request = new XMLHttpRequest();
+
+    request.open("GET", `https://pokeapi.co/api/v2/pokemon/${id}`, false)
+    let pokemon;
+    request.onload = function () {
+        pokemon = JSON.parse(request.response) 
+    };
+
+    request.send()
+    return pokemon
+};
 
 function filterPokemon(name, type) {
     const filteredList = pokemonList.filter(pokemon => {
